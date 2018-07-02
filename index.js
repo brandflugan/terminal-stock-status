@@ -24,7 +24,7 @@ function calculatePrice (stockName, prices) {
     } else {
         colorCode = '\x1b[31m';
     }
-    return `\x1b[35m${stockName}: \x1b[36m${prices.currentPrice} ${colorCode}(${calculatePercentage(prices.oldPrice, prices.currentPrice)})\x1b[0m`;
+    return `\x1b[35m${stockName}: \x1b[36m${prices.currentPrice} ${colorCode}(${calculatePercentage(prices.oldPrice, prices.currentPrice)}%)\x1b[0m`;
 }
 
 function calculatePercentage(oldPrice, newPrice) {
