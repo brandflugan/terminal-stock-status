@@ -1,18 +1,20 @@
-var request = require('request');
+let request = require('request');
 
-var stocks = [
+const stocks = [
     'KAN.ST',
     'TOBII.ST',
-    'STAR-B.ST'
-]
+    'STAR-B.ST',
+    'ACTI.ST',
+    'BIOA-B.ST',
+    'BINV.ST'
+];
 
 stocks.forEach(function(stockName) {
     calculateStockPrice(stockName);
 }, this);
 
 function calculateStockPrice(stockName) {
-
-    priceObject = getPrice(stockName, function(err, prices) {
+    return getPrice(stockName, function(err, prices) {
         console.log(calculatePrice(stockName, prices));
     });
 }
@@ -37,13 +39,10 @@ function getPrice (stockName, callback) {
     request("https://finance.yahoo.com/quote/" + stockName + "/", function(err, res, body){
 
 		if (err) {
-
 			callback(err);
-
 		}
-        var startingPrice = 200;
 
-        var prices = {
+        let prices = {
             currentPrice: body.split("currentPrice")[1].split("fmt\":\"")[1].split("\"")[0],
             oldPrice: body.split("previousClose")[1].split("fmt\":\"")[1].split("\"")[0]
         };
